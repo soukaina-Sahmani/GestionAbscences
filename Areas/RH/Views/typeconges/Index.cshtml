@@ -1,0 +1,220 @@
+﻿@model IEnumerable<GestionAbscences.Data.typeconge>
+
+@{
+    ViewBag.Title = "Paramètre : type de congé";
+
+}
+
+
+<title> Paramètre : type de congée </title>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+   
+    <title>Paramètre : type de congé</title>
+    
+    
+  
+</head>
+@using (Html.BeginForm("Modifier", "typeconges", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <body >
+
+
+
+        <div class="card mb-4">
+            <div class="card-header" style="font-size:large ; " >
+                <i class="fas fa-table mr-1"></i>
+                Paramètre : type de congé
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+
+                        <thead>
+                            <tr class="table-success">
+                                <th style="text-align:center;">
+                                    Designation
+                                </th>
+                                <th style="text-align:center;">
+                                    Durée
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tfoot>
+
+                        </tfoot>
+                        <tbody>
+
+
+
+                            <tr>
+                                <td style="text-align:center;">
+                                    1ere Tranche      <span style="text-align:center; font-weight:bold; padding-left:20px;">  >= </span>
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x1" id="x1" value="@ViewBag.t1" style="width:100%;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">
+                                    2eme Tranche            <span style="text-align:center; font-weight:bold; padding-left:20px;">  >= </span>
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x2" id="x2" value="@ViewBag.t2" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">
+                                    Reliquat
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x3" id="x3" value="@ViewBag.t3" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:center;">
+                                    Mariage du salarié
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x4" id="x4" value="@ViewBag.t4" style="width:100%;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">
+                                    Mariage d'un enfant du salarié
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x5" id="x5" value="@ViewBag.t5" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">
+                                    Décès: (parents-d'un enfant-d'un conjoint)  du salarié
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x6" id="x6" value="@ViewBag.t6" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="text-align:center;">
+                                    Décès : d'un frère ou d'une soeur du  : salarié-conjoint
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x9" id="x9" value="@ViewBag.t9" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="text-align:center;">
+                                    Exceptionnel/CR : 1/2 journée
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x11" id="x11" value="@ViewBag.t11" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">
+                                    Exceptionnel/CR : 1 journée
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x12" id="x12" value="@ViewBag.t12" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:center;">
+                                    Exceptionnel/CR : 1.5 journée
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x13" id="x13" value="@ViewBag.t13" style="width:100%;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">
+                                    Exceptionnel/CR : 2 journée
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x14" id="x14" value="@ViewBag.t14" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">
+                                    Circoncision
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x15" id="x15" value="@ViewBag.t15" style="width: 100%;" />
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:center;">
+                                    Opération chirurgicale : du conjoint-d'un enfant à charge
+                                </td>
+                                <td style="text-align:center;">
+                                    <input type="text" name="x20" id="x20" value="@ViewBag.t20" style="width:100%;" />
+
+                                </td>
+                            </tr>
+
+                              <tr>
+            <td style="text-align:center;">
+                Naissance
+            </td>
+            <td style="text-align:center;">
+                <input type="text" name="x22" id="x22" value="@ViewBag.t22" style="width: 100%;" />
+
+            </td>
+        </tr>
+                            
+
+
+
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <br>
+                <div class="offset-5  ">
+                <button class="btn btn-warning" style="padding-left:60px; padding-right:60px;">Enregistrer</button>
+                <br>
+
+                </div>
+                <br />
+
+            </div>
+        </div>
+
+
+       
+
+    </body>
+}
+</html>

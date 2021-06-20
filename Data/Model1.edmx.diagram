@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ccc21c877ce42268da72efcbeb37372" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="GestionAbscencesModel.CumulRecup" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.DCTEMP" Width="1.5" PointX="14.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.demandeconge" Width="1.5" PointX="6.625" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.employe" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.employehasentite" Width="1.5" PointX="4.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.entite" Width="1.5" PointX="7" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.entitesuper" Width="1.5" PointX="9.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.supervisionher" Width="1.5" PointX="12.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.typeconge" Width="1.5" PointX="11" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="GestionAbscencesModel.FK_CumulRecup_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_DemandeConge_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_DemandeConge_typeConge" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_employehasentite_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_employehasentite_Entite" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_entitesuper_Entite" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_entitesuper_SupervisionHer" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

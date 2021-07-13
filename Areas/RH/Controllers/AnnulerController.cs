@@ -165,7 +165,10 @@ namespace GestionAbscences.Areas.RH.Controllers
                double res = nb + d;
             */
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.IdEmploye).Select(u => new {
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
+
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.IdEmploye && p.Annee == annee && p.Mois == mois).Select(u => new {
                 hs = u.CumulHr,
                 jf = u.CumulJrF,
                 jr = u.CumulJrR,
@@ -185,7 +188,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
 
-            var dureM = (dateFin - dateDebut).TotalHours + 1;
+            var dureM = (dateFin - dateDebut).TotalHours ;
             var dureD = (dateFin - dateDebut).Days + 1;
             double duM = Convert.ToDouble(dureM);
             double nbM = Convert.ToDouble(e.employe.nbHeureR);
@@ -210,6 +213,7 @@ namespace GestionAbscences.Areas.RH.Controllers
                     {
                         double dhs = hsA + dureM;
                         cr.CumulHr = Convert.ToString(dhs);
+                        e.ValdationRH = "En cours";
 
                     }
                     else
@@ -218,7 +222,7 @@ namespace GestionAbscences.Areas.RH.Controllers
                         double dhs = jf + dureD;
                         string dh = Convert.ToString(dhs);
                         cr.CumulJrF = float.Parse(dh);
-
+                        e.ValdationRH = "En cours";
                     }
                     else
                    if (e.IdtypeConge == 24)
@@ -226,18 +230,25 @@ namespace GestionAbscences.Areas.RH.Controllers
                         double dhs = jR + dureD;
                         string dh = Convert.ToString(dhs);
                         cr.CumulJrR = float.Parse(dh);
+                        e.ValdationRH = "En cours";
 
+                    }
+                    else
+                    if (e.IdtypeConge == 4 || e.IdtypeConge == 5 || e.IdtypeConge == 22 || e.IdtypeConge == 6 || e.IdtypeConge == 7 || e.IdtypeConge == 8 || e.IdtypeConge == 9 || e.IdtypeConge == 10 || e.IdtypeConge == 15 || e.IdtypeConge == 20 || e.IdtypeConge == 21)
+                    {
+                        e.ValdationRH = "En cours";
                     }
                     else
                     {
                         e.employe.nbHeureR = resM.ToString();
+                        e.ValdationRH = "En cours";
                     }
 
 
 
 
 
-                    e.ValdationRH = "En cours";
+                    
                     e.ValidationN1 = "En cours";
                     e.ValidationN2 = "En cours";
                     e.annulation = "oui";

@@ -15,7 +15,7 @@
 </head>
 <body class="sb-nav-fixed" dir="@GestionAbscences.Langagues.Resource1.dir">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="@Url.Action("Donnée","employe")"><h6> @Session["userName"]  <br /> Mle : @Session["matricule"] </h6> </a>
+        <a class="navbar-brand" href="@Url.Action("Donnée", "employe")"><h6> @Session["userName"]  <br /> Mle : @Session["matricule"] </h6> </a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         @*
@@ -49,18 +49,19 @@
                     </ul>
                 </div>
             </div>
-        </form>*@
+        </form>
+        *@
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
-                    <a class="dropdown-item" href="@Url.Action("Donnée","employe")">@GestionAbscences.Langagues.Resource1.Profil</a>
+                    <a class="dropdown-item" href="@Url.Action("Donnée", "employe")">@GestionAbscences.Langagues.Resource1.Profil</a>
 
                     <div class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" href="@Url.Action("Index","Login")">@GestionAbscences.Langagues.Resource1.SeDeconnecté</a>
+                    <a class="dropdown-item" href="@Url.Action("Index", "Login")">@GestionAbscences.Langagues.Resource1.SeDeconnecté</a>
 
 
 
@@ -75,7 +76,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading"></div>
-                        <a class="nav-link" href="@Url.Action("Index","Default")">
+                        <a class="nav-link" href="@Url.Action("Index", "Default")">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             @GestionAbscences.Langagues.Resource1.Dashboard
                         </a>
@@ -84,23 +85,28 @@
 
 
 
-                        <a class="nav-link" href="@Url.Action("Index","employe")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Demande de congé
+                        <a class="nav-link" href="@Url.Action("Index", "employe")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                            @GestionAbscences.langagues.Resource1.demandeConge
                         </a>
-                        <a class="nav-link" href="@Url.Action("historiqueMois","employe")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Demande en cours
+                        <a class="nav-link" href="@Url.Action("historiqueMois", "employe")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-folder"></i></div>
+                            @GestionAbscences.langagues.Resource1.demandeCours
                         </a>
-                        <a class="nav-link" href="@Url.Action("historique","employe")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Historique
+                        <a class="nav-link" href="@Url.Action("historique", "employe")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                            @GestionAbscences.langagues.Resource1.Historique
                         </a>
 
 
-                        <a class="nav-link" href="@Url.Action("Donnée","employe")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Profil
+                        <a class="nav-link" href="@Url.Action("Donnée", "employe")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            @GestionAbscences.langagues.Resource1.Profil
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Index","Login")">
+                           
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Déconnecter
                         </a>
                     </div>
                 </div>

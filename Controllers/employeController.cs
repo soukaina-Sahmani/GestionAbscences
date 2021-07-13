@@ -257,7 +257,8 @@ namespace GestionAbscences.Controllers
 
 
 
-            
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
 
             int idT = e.IdtypeConge;
             string button = Request["modifier"];
@@ -265,7 +266,7 @@ namespace GestionAbscences.Controllers
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
             DateTime dc = DateTime.Now;
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye).Select(u => new {
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye && p.Annee == annee && p.Mois == mois).Select(u => new {
                 hs = u.CumulHr
                 
 
@@ -593,8 +594,10 @@ namespace GestionAbscences.Controllers
             string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
             DateTime dc = DateTime.Now;
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye).Select(u => new {
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye && p.Annee == annee && p.Mois == mois).Select(u => new {
                 hs = u.CumulHr,
                 jf = u.CumulJrF,
                 jr = u.CumulJrR
@@ -735,7 +738,7 @@ namespace GestionAbscences.Controllers
 
             string x = Session["matricule"].ToString();
 
-            int x1 = int.Parse(x);
+           // int x1 = int.Parse(x);
 
 
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x).OrderByDescending(news => news.DateDC).ToList();
@@ -833,12 +836,13 @@ namespace GestionAbscences.Controllers
             string justification = Request["justification"];
             DateTime dc = DateTime.Now;
 
-            
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
 
-          
+
             // ---------- Recûperation 
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == uid).Select(u => new {
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == uid && p.Annee == annee && p.Mois == mois).Select(u => new {
                 hs = u.CumulHr,
                 jf= u.CumulJrF,
                 jr = u.CumulJrR
@@ -879,7 +883,7 @@ namespace GestionAbscences.Controllers
             //duree
             var l = db.typeconge;
 
-            if (Request["dateDebut"].Equals("") || Request.Form["typeCongeIdTypeconge"].Equals(""))
+            if (Request["dateDebut"].Equals("") || Request.Form["typeCongeIdTypeconge"] == null )
             {
 
                 Session["Message"] = "Remlpir tout les champs svp";
@@ -1490,7 +1494,9 @@ namespace GestionAbscences.Controllers
             demande.DateDC = dc;
             demande.justification = justification;
             demande.annulation = "non";
-            var za = db.demandeconge;
+
+            
+            var za = db.demandeconge.Where(p => p.IdEmploye == e.idEmploye);
 
             // >=   <=
             foreach (var item in za)

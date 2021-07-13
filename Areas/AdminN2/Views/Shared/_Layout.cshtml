@@ -17,12 +17,45 @@
         <a class="navbar-brand" href="@Url.Action("Donnée","Default")">@Session["userName"] <br /> Matricule : @Session["matricule"]</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
+        @*
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+
+            <div class="input-group">
+                <div class="input-group-append">
+
+                    <ul>
+                        <li>
+                            </br>
+
+
+                            <a href="/Language/Frensh" style="color:antiquewhite;"><p class="p-2 mb-2  ">@GestionAbscences.Langagues.Resource1.Frensh</p></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            </br>
+                            <a href="/Language/English" style="color:antiquewhite;"><p class="p-2 mb-2 ">@GestionAbscences.Langagues.Resource1.English</p></a>
+
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            </br>
+
+                            <a href="/Language/Arabic" style="color:antiquewhite;"><p class="p-2 mb-2 ">@GestionAbscences.Langagues.Resource1.Arabic</p></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        *@
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    
+
                     <a class="dropdown-item" href="@Url.Action("Donnée","Default")">Profil</a>
 
                     <div class="dropdown-divider"></div>
@@ -44,7 +77,7 @@
                             Dashboard
                         </a>
 
-                       
+
 
                         <a class="nav-link" href="@Url.Action("historique","Historique")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -57,6 +90,11 @@
                         <a class="nav-link" href="@Url.Action("Donnée","Default")" ">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Profil
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Index","Login")">
+                           
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Déconnecter
                         </a>
 
 

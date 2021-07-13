@@ -322,6 +322,24 @@ namespace GestionAbscences.langagues {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Leave request.
+        /// </summary>
+        public static string demandeConge {
+            get {
+                return ResourceManager.GetString("demandeConge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Demand in progress.
+        /// </summary>
+        public static string demandeCours {
+            get {
+                return ResourceManager.GetString("demandeCours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Leave Request.
         /// </summary>
         public static string DemandeDeCongé {

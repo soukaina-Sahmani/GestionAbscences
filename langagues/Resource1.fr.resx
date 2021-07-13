@@ -201,6 +201,12 @@
   <data name="Debut" xml:space="preserve">
     <value>Debut</value>
   </data>
+  <data name="demandeConge" xml:space="preserve">
+    <value>Demande de congé</value>
+  </data>
+  <data name="demandeCours" xml:space="preserve">
+    <value>Demande en cours</value>
+  </data>
   <data name="DemandeDeCongé" xml:space="preserve">
     <value>Demande De Congé</value>
   </data>

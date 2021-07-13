@@ -192,6 +192,12 @@
   <data name="Debut" xml:space="preserve">
     <value>بداية</value>
   </data>
+  <data name="demandeConge" xml:space="preserve">
+    <value>طلب إجازة</value>
+  </data>
+  <data name="demandeCours" xml:space="preserve">
+    <value>الطلب قيد التقدم</value>
+  </data>
   <data name="DemandeDeCongé" xml:space="preserve">
     <value>طلب إجازة</value>
   </data>

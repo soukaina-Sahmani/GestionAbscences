@@ -87,7 +87,7 @@ namespace GestionAbscences.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("historiqueMois", "employe");
+                    return RedirectToAction("historique", "employe");
 
                 }
 

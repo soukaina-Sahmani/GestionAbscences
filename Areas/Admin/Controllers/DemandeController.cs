@@ -67,7 +67,10 @@ namespace GestionAbscences.Areas.Admin.Controllers
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
             DateTime dc = DateTime.Now;
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye).Select(u => new {
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
+
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye && p.Annee == annee && p.Mois == mois).Select(u => new {
                 hs = u.CumulHr
 
 
@@ -395,12 +398,15 @@ namespace GestionAbscences.Areas.Admin.Controllers
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
             DateTime dc = DateTime.Now;
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye).Select(u => new {
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.employe.idEmploye && p.Annee == annee && p.Mois == mois).Select(u => new {
                 hs = u.CumulHr,
                 jf = u.CumulJrF,
                 jr = u.CumulJrR
 
             }).Single();
+
 
 
 
@@ -775,9 +781,10 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
             // ---------- Recûperation 
 
-            
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == uid).Select(u => new {
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == uid && p.Annee == annee && p.Mois == mois).Select(u => new {
                 hs = u.CumulHr,
                 jf = u.CumulJrF,
                 jr = u.CumulJrR
@@ -1427,7 +1434,8 @@ namespace GestionAbscences.Areas.Admin.Controllers
             demande.DateDC = dc;
             demande.justification = justification;
             demande.annulation = "non";
-            var za = db.demandeconge;
+
+            var za = db.demandeconge.Where(p => p.IdEmploye == e.idEmploye);
 
             foreach (var item in za)
             {

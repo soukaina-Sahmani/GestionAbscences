@@ -184,6 +184,7 @@
     <Compile Include="Areas\Admin\Models\HistoriqueModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DashBController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\employeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -656,6 +657,11 @@
     <Content Include="Views\employe\modifier2.cshtml" />
     <Content Include="Views\employe\modifier4.cshtml" />
     <Content Include="Views\employe\historiqueMois.cshtml" />
+    <Content Include="Views\DashB\Index.cshtml" />
+    <Content Include="Views\DashB\Global.cshtml" />
+    <Content Include="Views\DashB\Accepte.cshtml" />
+    <Content Include="Views\DashB\Refuse.cshtml" />
+    <Content Include="Views\DashB\Encours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

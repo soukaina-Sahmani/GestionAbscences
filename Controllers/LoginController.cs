@@ -87,7 +87,7 @@ namespace GestionAbscences.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("historique", "employe");
+                    return RedirectToAction("Index", "DashB");
 
                 }
 

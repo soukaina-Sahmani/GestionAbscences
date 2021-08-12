@@ -7,28 +7,27 @@ using GestionAbscences.Data;
 using GestionAbscences.Models;
 using System.Data.Entity;
 
-namespace GestionAbscences.Controllers
+namespace GestionAbscences.Areas.Admin.Controllers
 {
-    public class DashBController : Controller
+    public class Dashb1Controller : Controller
     {
+        // GET: Admin/Dashb1
         private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         // GET: DashB
         public ActionResult Index()
         {
-            string x = Session["matricule"].ToString();
+          
+           string x = Session["matricule"].ToString();
             //global
             var count1 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x).Count();
             Session["global"] = count1.ToString();
 
             var test = count1.ToString();
-            if (test.Equals("0"))
+            if(test.Equals("0"))
             {
                 Session["accept1"] = 0;
                 Session["refuse1"] = 0;
                 Session["enCours1"] = 0;
-                Session["accepte"] = 0;
-                Session["refuse"] = 0;
-                Session["enCours"] = 0;
 
             }
             else
@@ -48,8 +47,9 @@ namespace GestionAbscences.Controllers
                 Session["enCours"] = count4.ToString();
                 var num3 = count4 * 100;
                 Session["enCours1"] = num3 / count1;
+           
             }
-               
+     
             return View();
         }
         public ActionResult Global()
@@ -65,7 +65,7 @@ namespace GestionAbscences.Controllers
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x).OrderByDescending(news => news.DateDC).ToList();
 
 
-         
+
             //  var t = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x).Count();
             //ViewBag.count = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x).Count().ToString();
             return View(demandeConge);
@@ -97,7 +97,7 @@ namespace GestionAbscences.Controllers
             // int x1 = int.Parse(x);
 
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "refuse" || p.ValidationN1 == "refuse" || p.ValidationN2 == "refuse"  )).OrderByDescending(news => news.DateDC).ToList();
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "refuse" || p.ValidationN1 == "refuse" || p.ValidationN2 == "refuse")).OrderByDescending(news => news.DateDC).ToList();
 
 
             return View(demandeConge);
@@ -113,7 +113,7 @@ namespace GestionAbscences.Controllers
             // int x1 = int.Parse(x);
 
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "En cours" || p.ValidationN1 == "En cours" || p.ValidationN2 == "En cours")) .OrderByDescending(news => news.DateDC).ToList();
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "En cours" || p.ValidationN1 == "En cours" || p.ValidationN2 == "En cours")).OrderByDescending(news => news.DateDC).ToList();
 
 
             return View(demandeConge);

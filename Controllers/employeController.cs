@@ -1199,8 +1199,7 @@ namespace GestionAbscences.Controllers
 
                             //****
                             var employe = db.employe.Find(uid);
-                            if (employe.sexe.Equals("Homme"))
-                            {
+                           
                                 if (employe.Status.Equals("celibataire"))
                                 {
                                     if (employe.Classe.Equals("Agent de Maitrise"))
@@ -1290,103 +1289,14 @@ namespace GestionAbscences.Controllers
                                     }
                                 }
 
-                            }
-                            else if (employe.sexe.Equals("Femme"))
-                            {
-                                if (employe.Status.Equals("celibataire"))
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "700";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "600";
-                                    }
-                                }
-                                else if (employe.Status.Equals("Marie") && employe.nbEnfants == 0)
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "950";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "800";
-                                    }
-                                }
-                                else if (employe.Status.Equals("Marie") && employe.nbEnfants == 1)
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "1250";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "1000";
-                                    }
-                                }
-                                else if (employe.Status.Equals("Marie") && employe.nbEnfants == 2)
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "1550";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "1200";
-                                    }
-                                }
-                                else if (employe.Status.Equals("Marie") && employe.nbEnfants == 3)
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "1850";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "1400";
-                                    }
-                                }
-                                else if (employe.Status.Equals("Marie") && employe.nbEnfants == 4)
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "2150";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "1600";
-                                    }
-                                }
-                                else if (employe.Status.Equals("Marie") && employe.nbEnfants == 5)
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "2450";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "1800";
-                                    }
-                                }
-                                else if (employe.Status.Equals("Marie") && employe.nbEnfants == 6)
-                                {
-                                    if (employe.Classe.Equals("Agent de Maitrise"))
-                                    {
-                                        demande.soldeConge = "2750";
-                                    }
-                                    else if (employe.Classe.Equals("OE"))
-                                    {
-                                        demande.soldeConge = "2000";
-                                    }
-                                }
+                            
+                            
                                 else
                                 {
                                     Session["Message"] = "Verifier vos donnees svp ";
                                     return RedirectToAction("Index", "Demande");
                                 }
-                            }
+                            
 
 
 

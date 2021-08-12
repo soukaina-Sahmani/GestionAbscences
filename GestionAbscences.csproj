@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\Controllers\Dashb1Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeController.cs" />
     <Compile Include="Areas\RH\Controllers\AnnulerController.cs" />
     <Compile Include="Areas\RH\Controllers\EmployeController.cs" />
@@ -597,6 +598,11 @@
     <Content Include="Areas\Admin\Views\Demande\modifier4.cshtml" />
     <Content Include="Areas\Admin\Views\Demande\modifier2.cshtml" />
     <Content Include="Areas\Admin\Views\Demande\historiqueMois.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Global.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Accepte.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Refuse.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Encours.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>

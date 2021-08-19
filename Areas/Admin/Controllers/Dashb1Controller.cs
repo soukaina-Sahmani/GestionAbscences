@@ -6,6 +6,10 @@ using System.Web.Mvc;
 using GestionAbscences.Data;
 using GestionAbscences.Models;
 using System.Data.Entity;
+//using System.Web.Helpers;
+
+using GestionAbscences.Areas.Admin.Models;
+
 
 namespace GestionAbscences.Areas.Admin.Controllers
 {
@@ -16,10 +20,13 @@ namespace GestionAbscences.Areas.Admin.Controllers
         // GET: DashB
         public ActionResult Index()
         {
-          
-           string x = Session["matricule"].ToString();
+
+      
+
+
+            string x = Session["matricule"].ToString();
             //global
-            var count1 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x).Count();
+            var count1 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Count();
             Session["global"] = count1.ToString();
 
             var test = count1.ToString();
@@ -33,17 +40,17 @@ namespace GestionAbscences.Areas.Admin.Controllers
             else
             {
                 //accepte
-                var count2 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && p.ValdationRH == "accepte").Count();
+                var count2 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.ValdationRH == "accepte").Count();
                 Session["accepte"] = count2.ToString();
                 var num1 = count2 * 100;
                 Session["accept1"] = num1 / count1;
                 //refuse
-                var count3 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "refuse" || p.ValidationN1 == "refuse" || p.ValidationN2 == "refuse")).Count();
+                var count3 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  (p.ValdationRH == "refuse" || p.ValidationN1 == "refuse" || p.ValidationN2 == "refuse")).Count();
                 Session["refuse"] = count3.ToString();
                 var num2 = count3 * 100;
                 Session["refuse1"] = num2 / count1;
                 //encours
-                var count4 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "En cours" || p.ValidationN1 == "En cours" || p.ValidationN2 == "En cours")).Count();
+                var count4 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => (p.ValdationRH == "En cours" || p.ValidationN1 == "En cours" || p.ValidationN2 == "En cours")).Count();
                 Session["enCours"] = count4.ToString();
                 var num3 = count4 * 100;
                 Session["enCours1"] = num3 / count1;
@@ -62,7 +69,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
             // int x1 = int.Parse(x);
 
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x).OrderByDescending(news => news.DateDC).ToList();
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).OrderByDescending(news => news.DateDC).ToList();
 
 
 
@@ -81,7 +88,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
             // int x1 = int.Parse(x);
 
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && p.ValdationRH == "accepte").OrderByDescending(news => news.DateDC).ToList();
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.ValdationRH == "accepte").OrderByDescending(news => news.DateDC).ToList();
 
 
             return View(demandeConge);
@@ -97,7 +104,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
             // int x1 = int.Parse(x);
 
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "refuse" || p.ValidationN1 == "refuse" || p.ValidationN2 == "refuse")).OrderByDescending(news => news.DateDC).ToList();
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  (p.ValdationRH == "refuse" || p.ValidationN1 == "refuse" || p.ValidationN2 == "refuse")).OrderByDescending(news => news.DateDC).ToList();
 
 
             return View(demandeConge);
@@ -113,11 +120,157 @@ namespace GestionAbscences.Areas.Admin.Controllers
             // int x1 = int.Parse(x);
 
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x && (p.ValdationRH == "En cours" || p.ValidationN1 == "En cours" || p.ValidationN2 == "En cours")).OrderByDescending(news => news.DateDC).ToList();
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  (p.ValdationRH == "En cours" || p.ValidationN1 == "En cours" || p.ValidationN2 == "En cours")).OrderByDescending(news => news.DateDC).ToList();
 
 
             return View(demandeConge);
 
         }
+
+      /*  public JsonResult MultiBarChartDataEF()
+        {
+            var data = db.employe.ToList();
+            var uniqueProducts = from d in data orderby d.ProductName group d by d.ProductName into m select m.Key;
+            var uniqueMonths = from a in data orderby a.MonthNumber group a by a.Month into g select g.Key;
+
+
+            string[] cols = new string[] { "#FF0000", "#800000" };
+            int i = 0;
+
+            Chart _chart = new Chart();
+            _chart.labels = uniqueMonths.ToArray();
+            _chart.datasets = new List<Datasets>();
+            List<Datasets> _dataSet = new List<Datasets>();
+
+            foreach (var d in uniqueProducts)
+            {
+                var colors = new string[uniqueMonths.Count()];
+                for (int j = 0; j < colors.Length; j++) colors[j] = cols[i];
+                _dataSet.Add(new Datasets()
+                {
+                    label = d,
+                    data = (from a in data where a.ProductName == d select a.Amount.Value).ToArray(),
+                    backgroundColor = colors,
+                    borderColor = new string[] { "#FF0000", "#800000" },
+                    borderWidth = "1"
+
+                });
+                i++;
+            }
+            _chart.datasets = _dataSet;
+            return Json(_chart, JsonRequestBehavior.AllowGet);
+        }*/
+
+        public ActionResult MyChart()
+        {  
+            DateTime jD = Convert.ToDateTime(DateTime.Now.ToString("01/01/yyyy"));
+            DateTime jF = Convert.ToDateTime(DateTime.Now.ToString("31/01/yyyy"));
+
+            DateTime FD = Convert.ToDateTime(DateTime.Now.ToString("01/02/yyyy"));
+            DateTime FF = Convert.ToDateTime(DateTime.Now.ToString("28/02/yyyy"));
+
+            DateTime MarsD = Convert.ToDateTime(DateTime.Now.ToString("01/03/yyyy"));
+            DateTime MarsF = Convert.ToDateTime(DateTime.Now.ToString("31/03/yyyy"));
+
+            DateTime AD = Convert.ToDateTime(DateTime.Now.ToString("01/04/yyyy"));
+            DateTime AF = Convert.ToDateTime(DateTime.Now.ToString("30/04/yyyy"));
+
+            DateTime MD = Convert.ToDateTime(DateTime.Now.ToString("01/05/yyyy"));
+            DateTime MF = Convert.ToDateTime(DateTime.Now.ToString("31/05/yyyy"));
+
+            DateTime juD = Convert.ToDateTime(DateTime.Now.ToString("01/06/yyyy"));
+            DateTime juF = Convert.ToDateTime(DateTime.Now.ToString("30/06/yyyy"));
+
+            DateTime julD = Convert.ToDateTime(DateTime.Now.ToString("01/07/yyyy"));
+            DateTime julF = Convert.ToDateTime(DateTime.Now.ToString("31/07/yyyy"));
+
+
+            DateTime AoutD = Convert.ToDateTime(DateTime.Now.ToString("01/08/yyyy"));
+            DateTime AoutF = Convert.ToDateTime(DateTime.Now.ToString("31/08/yyyy"));
+
+
+            DateTime sepD = Convert.ToDateTime(DateTime.Now.ToString("01/09/yyyy"));
+            DateTime sepF = Convert.ToDateTime(DateTime.Now.ToString("30/09/yyyy"));
+
+            DateTime OcD = Convert.ToDateTime(DateTime.Now.ToString("01/10/yyyy"));
+            DateTime OcF = Convert.ToDateTime(DateTime.Now.ToString("31/10/yyyy"));
+
+            DateTime novD = Convert.ToDateTime(DateTime.Now.ToString("01/11/yyyy"));
+            DateTime novF = Convert.ToDateTime(DateTime.Now.ToString("30/11/yyyy"));
+
+            DateTime DEcD = Convert.ToDateTime(DateTime.Now.ToString("01/12/yyyy"));
+            DateTime  DecF = Convert.ToDateTime(DateTime.Now.ToString("31/12/yyyy"));
+
+
+            string[] xv = { "janvier", "Février", "Mars", "Avril", "May", "juin" , "juillet" , "Aout" , "September" , "October" , "November","December"};
+
+
+            //Les demandes non traiter
+         
+          var NT1 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= jD && p.DateFin <= jF).Count();
+            var NT2 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= FD && p.DateFin <= FF).Count();
+            var NT3 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= MarsD && p.DateFin <= MarsF).Count();
+            var NT4 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= AD && p.DateFin <= AF).Count();
+            var NT5 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= MD && p.DateFin <= MF).Count();
+            var NT6 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= juD && p.DateFin <= juF).Count();
+            var NT7 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= julD && p.DateFin <= julF).Count();
+
+            var NT8 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= AoutD && p.DateFin <= AoutF).Count();
+            var NT9 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= sepD && p.DateFin <= sepF).Count();
+            var NT10 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >=OcD && p.DateFin <= OcF).Count();
+            var NT11 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= novD && p.DateFin <= novF).Count();
+            var NT12 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= DEcD && p.DateFin <= DecF).Count();
+
+            //tous les demandes
+
+            var T1 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= jD && p.DateFin <= jF).Count();
+            var T2 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= FD && p.DateFin <= FF).Count();
+            var T3 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= MarsD && p.DateFin <= MarsF).Count();
+            var T4 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= AD && p.DateFin <= AF).Count();
+            var T5 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= MD && p.DateFin <= MF).Count();
+            var T6 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= juD && p.DateFin <= juF).Count();
+            var T7 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= julD && p.DateFin <= julF).Count();
+
+            var T8 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= AoutD && p.DateFin <= AoutF).Count();
+            var T9 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= sepD && p.DateFin <= sepF).Count();
+            var T10 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= OcD && p.DateFin <= OcF).Count();
+            var T11 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= novD && p.DateFin <= novF).Count();
+            var T12 = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p =>  p.DateDebut >= DEcD && p.DateFin <= DecF).Count();
+
+
+            int[] yv = { NT1 , NT2 , NT3 , NT4, NT5 , NT6 , NT7 , NT8 , NT9 , NT10 , NT11 , NT12};
+            int[] yv1 = { T1 , T2 , T3 , T4, T5 , T6 , T7 , T8 , T9 , T10 , T11 , T12};
+            // int[] yv = { 2,8 ,9 ,2 , 4 , 9 ,4};
+            // string[] xv = { "janvier", "Février", "Mars", "Avril", "May", "juin", "juillet" };
+
+            new System.Web.Helpers.Chart(width: 1200, height: 400 )  
+               
+                .AddLegend("Legend" , "yyyyy")
+                .AddSeries
+                (chartType: "Column",
+
+                name: "DC",
+                xValue: xv,
+                yValues: yv1)
+
+                 .AddSeries
+                (chartType: "Column",
+
+                name: "Bre",
+
+
+                xValue: xv,
+                yValues: yv
+
+
+                ).
+                Write("png");
+
+
+
+            return null;
+        }
+
+
     }
 }

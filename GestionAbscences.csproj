@@ -165,6 +165,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\Dashb1Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeController.cs" />
+    <Compile Include="Areas\Admin\Models\ChartTest.cs" />
     <Compile Include="Areas\RH\Controllers\AnnulerController.cs" />
     <Compile Include="Areas\RH\Controllers\EmployeController.cs" />
     <Compile Include="Areas\RH\Controllers\employehasentitesController.cs" />
@@ -273,6 +274,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
     <Content Include="Content\cont2\css\style.css" />
     <Content Include="Content\cont2\fonts\material-icon\css\material-design-iconic-font.css" />
     <Content Include="Content\cont2\fonts\material-icon\css\material-design-iconic-font.min.css" />
@@ -608,6 +611,9 @@
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.fr.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />

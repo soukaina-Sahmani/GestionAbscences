@@ -20,26 +20,7 @@ namespace GestionAbscences.Controllers
             return View();
         }
 
-        /*  [HttpPost]
-          public ActionResult Index(LoginModl loginInfo)
-          {
-
-              var adminService = new AdminService();
-              var isLoggedIn = adminService.Login(loginInfo.Id, loginInfo.Password);
-              if (isLoggedIn)
-              {
-
-                  return RedirectToAction("Index", "Default");
-              }
-              else
-              {
-                  loginInfo.Message = "email or pass incorrect";
-                  return View(loginInfo);
-              }
-
-
-
-          }*/
+       
         private readonly DemandeService demandeService;
 
 

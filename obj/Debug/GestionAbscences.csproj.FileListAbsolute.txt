@@ -298,3 +298,11 @@ C:\Users\HP\source\repos\GestionAbscences\obj\Debug\GestionAbscences.csproj.Gene
 C:\Users\HP\source\repos\GestionAbscences\obj\Debug\ar-EG\GestionAbscences.resources.dll
 C:\Users\HP\source\repos\GestionAbscences\obj\Debug\fr\GestionAbscences.resources.dll
 C:\Users\HP\source\repos\GestionAbscences\obj\Debug\GestionAbscences.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\GestionAbscences\bin\Chart.Mvc.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\Chart.Mvc.pdb
+C:\Users\HP\source\repos\GestionAbscences\bin\Chart.Mvc.xml
+C:\Users\HP\source\repos\GestionAbscences\bin\netchartdir.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\netchartdir.xml
+C:\Users\HP\source\repos\GestionAbscences\bin\LiveCharts.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\LiveCharts.pdb
+C:\Users\HP\source\repos\GestionAbscences\bin\LiveCharts.xml
